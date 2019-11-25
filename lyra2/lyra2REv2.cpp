@@ -6,7 +6,7 @@ extern "C" {
 #include "sph/sph_cubehash.h"
 #include "lyra2/Lyra2.h"
 }
-
+#include "math.h"
 #include "miner.h"
 #include "cuda_helper.h"
 extern "C" {

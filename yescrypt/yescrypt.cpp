@@ -60,7 +60,7 @@ void yescryptr24_hash(void *state, const void *input)
 
 void yescryptr32_hash(void *state, const void *input)
 {
-	yescrypt_hash_base(state, input, 4096, 32, 1, "WaviBanana", 10);
+	yescrypt_hash_base(state, input, 2048, 32, 1, "LTNCGYES", 8);
 }
 
 int scanhash_yescrypt_base(int thr_id, uint32_t *pdata,
@@ -98,7 +98,7 @@ int scanhash_yescrypt_base(int thr_id, uint32_t *pdata,
 	uint32_t max_thread_multiple = (props.totalGlobalMem - 256 * 1024 * 1024) / (((520 + 2 * r * (N + 16 * p)) * sizeof(uint32_t)) * CUDAcore_count);
 #endif
 
-	if (device_sm[dev_id] > 500)		// Maxwell(GTX9xx)/Pascal/Volta
+/*	if (device_sm[dev_id] > 500)		// Maxwell(GTX9xx)/Pascal/Volta
 		throughputmax = device_intensity(dev_id, __func__, CUDAcore_count * min(3, max_thread_multiple));
 	else if (device_sm[dev_id] == 500)	// Maxwell(GTX750Ti/GTX750)
 		throughputmax = device_intensity(dev_id, __func__, CUDAcore_count * min(2, max_thread_multiple));
@@ -106,7 +106,7 @@ int scanhash_yescrypt_base(int thr_id, uint32_t *pdata,
 		throughputmax = device_intensity(dev_id, __func__, CUDAcore_count);
 	else if (device_sm[dev_id] >= 210)	// Fermi(GF11x)
 		throughputmax = device_intensity(dev_id, __func__, CUDAcore_count);
-	else								// Fermi(GF10x)
+	else*/								// Fermi(GF10x)
 		throughputmax = device_intensity(dev_id, __func__, CUDAcore_count);
 
 	throughputmax = (throughputmax / CUDAcore_count) * CUDAcore_count;
@@ -264,5 +264,5 @@ int scanhash_yescryptr32(int thr_id, uint32_t *pdata,
 	uint32_t *ptarget, uint32_t max_nonce,
 	uint32_t *hashes_done)
 {
-	return  scanhash_yescrypt_base(thr_id, pdata, ptarget, max_nonce, hashes_done, 4096, 32, 1, "WaviBanana", 10);
+	return  scanhash_yescrypt_base(thr_id, pdata, ptarget, max_nonce, hashes_done, 2048, 32, 1, "LTNCGYES", 8);
 }
